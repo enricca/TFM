@@ -5,8 +5,6 @@ We preprocess the masks of the nodules.
 Example usage:
 python lung_cancer_isbi18/src/preprocess.py --input_folder ~/../../media/shared/datasets/ISBI/ISBI-deid-TRAIN-DICOM --output_folder ~/../../media/shared/datasets/ISBI/preprocessed --nodule_info ~/../../media/shared/datasets/ISBI/ISBI-deid-TRAIN-SegMASK/ --pipeline isbi
 """
-#python lung_cancer_isbi18/src/preprocess.py --input_folder /home/enric/Desktop/TFM/DATA_LUNA/all_subsets --output_folder /home/enric/Desktop/TFM/DATA_LUNA/preprocessed --nodule_info /home/enric/Desktop/TFM/DATA_LUNA/CSVFILES/annotations.csv --pipeline luna
-
 
 import argparse
 import logging
@@ -33,8 +31,7 @@ logging.basicConfig(
 COMMON_SPACING = [2, 0.7, 0.7]
 
 #HARDCODED
-# pIdToXML = pd.read_csv('/home/gabriel/xmlParsing/pIdToXML.csv')
-pIdToXML = pd.read_csv('/home/enric/Desktop/TFM/DATA_LUNA/CSVFILES/patientIdToCSV2.csv')
+pIdToXML = pd.read_csv('DATA_LUNA/CSVFILES/patientIdToCSV2.csv')
 
 def process_filename(patient_file,
                      output_folder,
@@ -50,7 +47,6 @@ def process_filename(patient_file,
     malign = extra_features
     lobulation = extra_features
     spiculation = extra_features
-    # truenoduleslicepath = '/home/shared/isbi_groundtruth_nodules_trueNoduleSlice.csv'
     #Just needed if DSB or ISBI
     # truenoduleslicepath = '/media/shared/datasets/ISBI/isbi_groundtruth_nodules_trueNoduleSlice.csv'
     
