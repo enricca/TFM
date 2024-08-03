@@ -5,19 +5,14 @@ Uses load_patient to generate patches over, and for each patch gets the probabil
 """
 
 import sys
-sys.path.append('/homedtic/ecosp/lung_cancer_isbi18/src/')
-sys.path.append('/homedtic/ecosp/lung_cancer_isbi18/src/dl_model_patches')
-
+sys.path.append('lung_cancer_isbi18/src/')
 import os
-
 import logging
 import argparse
 import numpy as np
 import pandas as pd
 import time,datetime
-
 from dl_model_patches import  common
-
 import keras
 from keras import backend as K
 from dl_networks.sample_resnet import ResnetBuilder
