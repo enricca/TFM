@@ -7,7 +7,7 @@ import evaluate
 
 
 ### PARAMETERS
-# BD = '/Users/mingot/Projectes/kaggle/ds_bowl_lung/personal/execute_model/'  # Base directory
+# BD = 'ds_bowl_lung/personal/execute_model/'  # Base directory
 # INPUT_PATH = BD + 'input_data/'
 BD = '/home/shared/output/execution_test/'
 INPUT_PATH = '/home/shared/data/sample_submission/'
@@ -17,8 +17,7 @@ INPUT_PATH = '/home/shared/data/sample_submission/'
 # if not os.path.exists(BD + 'preprocessed_data'): os.makedirs(BD + 'preprocessed_data')
 # if not os.path.exists(BD + 'output_csv'): os.makedirs(BD + 'output_csv')
 # if not os.path.exists(BD + 'models'): os.makedirs(BD + 'models')
-#
-#
+
 # # TEMP files and directories
 # PREPROCESSED_PATH = BD + 'preprocessed_data/'  # /mnt/hd2/preprocessed5/
 # OUTPUT_DL1 = BD + 'output_csv/dl1.csv'
@@ -39,32 +38,23 @@ INPUT_PATH = '/home/shared/data/sample_submission/'
 #     file.write('id,cancer\n')
 #     for patient in patients:
 #         file.write('%s,0.5\n' % patient)
-#
-#
+
 # ## Preprocess data
 # logging.info('Preprocessing data ...')
 # from preprocess import preprocess_files
 # patient_files = [os.path.join(INPUT_PATH, p) for p in os.listdir(INPUT_PATH)]
 # preprocess_files(file_list=patient_files, output_folder=PREPROCESSED_PATH, pipeline='dsb')
-#
-#
-#
+
 # file_list = [os.path.join(PREPROCESSED_PATH, fp) for fp in os.listdir(PREPROCESSED_PATH)]
-#
-#
-#
+
 # ## Execute DL1
 # logging.info('Executign DL1 ...')
 # evaluate.evaluate_model(file_list=file_list, model_path=MODEL_DL1, output_csv=OUTPUT_DL1)
-#
-#
-#
+
 # ## Execute DL2
 # logging.info('Executign DL2 ...')
 # evaluate.evaluate_model(file_list=file_list, model_path=MODEL_DL2, output_csv=OUTPUT_DL2)
-#
-#
-#
+
 # ## Execute DL3
 # logging.info("Loading DL1 and DL2 data frames...")
 # dl1_df = pd.read_csv(OUTPUT_DL1)
@@ -84,7 +74,6 @@ INPUT_PATH = '/home/shared/data/sample_submission/'
 # PREPROCESSED_PATH = '/mnt/hd2/preprocessed_stage2/'
 # EXTENDED_NODULES = '/home/shared/output/resnet/stage2/dl1_v11_augmented.csv'
 
-
 ## GOOD!
 # OUTPUT_DL1 = '/home/shared/output/resnet/v11/nodules_patches_dl1_v11_stage2_total.csv'
 # AGGREGATED_NODULES = '/home/shared/output/resnet/v11/dl1_v11_aggregated.csv'
@@ -97,14 +86,14 @@ PREPROCESSED_PATH = '/mnt/hd2/preprocessed5/'
 EXTENDED_NODULES = '/home/shared/output/resnet/v11/dl1_v11_augmented_TEST_SERGI.csv'
 
 
-## (Gabriel) Aggregate nodules
+## Aggregate nodules
 THRESHOLD_CUT = 0.7
 from merge_nodules import  merge_nodules_csv
 logging.info('Executing nodules aggregation ...')
 merge_nodules_csv(OUTPUT_DL1, AGGREGATED_NODULES, nodule_threshold=THRESHOLD_CUT)  # TODO: te mes sentit usar ja els HN?
 
 
-## (Sergi) Extend nodules
+## Extend nodules
 from nodules_aggregator import extend_nodules as naen
 logging.info('Executing nodules feature extraction ...')
 naen.process_pipeline_csv(
@@ -116,8 +105,6 @@ naen.process_pipeline_csv(
     compress={'hog':3, 'lbp':3, 'hu':2}, # quines features comprimir i amb quants pcs
     patient_inverted=[],  # list of inverted patients ['dsb_*.npz',...]
     nCores=4)
-
-
 
 # # ## Execute final R model
 # cmnd = 'Rscript final_minimal.R'
