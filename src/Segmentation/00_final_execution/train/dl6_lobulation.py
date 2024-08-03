@@ -1,12 +1,9 @@
 import sys
 import getpass
-# if getpass.getuser() == 'manuel':
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
 import os
 import random
 import logging
 import argparse
-
 import numpy as np
 import pandas as pd
 from dl_model_patches import  common
@@ -155,7 +152,6 @@ def train(load_model=False, version = 0):
     y_test = sigmoid(y_test)
     y_test = np.expand_dims(y_test, axis=1)
 
-    
     x_train = np.load(os.path.join(PATCHES_PATH, 'dl6_v{}_x_train.npz'.format(version)))['arr_0']
     y_train = np.load(os.path.join(PATCHES_PATH, 'dl6_v{}_y_train.npz'.format(version)))['arr_0']
     y_train = y_train/84.
@@ -176,7 +172,6 @@ def train(load_model=False, version = 0):
     if load_model:
         logging.info('Loading exiting model...')
         model.load_weights(OUTPUT_MODEL)
-
 
     model.fit_generator(generator=chunks(x_train, y_train, batch_size=32, thickness=1, data_generator = train_datagen),
                         samples_per_epoch=1280,  # make it small to update TB and CHECKPOINT frequently
