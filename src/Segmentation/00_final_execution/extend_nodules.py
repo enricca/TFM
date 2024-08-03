@@ -261,9 +261,8 @@ def process_img(img, lung_mask, return_images=False):
     ans_whichmax = ans_size.index(max(ans_size))
     ans_max = ans_prop[ans_whichmax]
     
-    return ans_max
     # return ans, ans_prop
-
+    return ans_max
 
 
 def process_prop(prop):
@@ -536,7 +535,7 @@ def process_pipeline_csv(
     # debug
     # csv_in='../data/tiny_dl_example.csv'
     # csv_out='dummy_out.csv'
-    # patient_path="/home/sergi/all/devel/big/lung_cancer_ds_bowl/preprocessed5/"
+    # patient_path="lung_cancer_ds_bowl/preprocessed5/"
     # verbose=False
     
     # Check format
