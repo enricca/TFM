@@ -1,6 +1,6 @@
 import sys
 import getpass
-sys.path.append("../home/pau/lung_cancer_isbi18/src/dl_networks")
+sys.path.append("lung_cancer_isbi18/src/dl_networks")
 import os
 import random
 import logging
