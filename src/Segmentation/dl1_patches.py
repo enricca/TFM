@@ -1,18 +1,13 @@
 
 import sys
 import getpass
-
-if getpass.getuser() == 'manuel':
-    sys.path.append('../home/manuel/lung_cancer_isbi18/src')
 import os
 import random
 import logging
 import argparse
-
 import numpy as np
 import pandas as pd
 from dl_model_patches import common
-
 from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
@@ -21,9 +16,7 @@ from dl_networks.sample_resnet import ResnetBuilder
 import dl_networks.unet2
 import skimage
 from dl_utils.tb_callback import TensorBoard
-
 from sklearn.metrics import roc_auc_score
-
 
 class roc_callback(Callback):
     def __init__(self, generator):
@@ -64,7 +57,7 @@ class roc_callback(Callback):
 ## PATCHES GENERATION -----------------------------------------------------------------
 def compute_ROIs(generate_csv=False,
                  version=0,
-                 patientTxtPath='/media/shared/datasets/LUNA/CSVFILES/patients_train.txt',
+                 patientTxtPath='LUNA/CSVFILES/patients_train.txt',
                  mode='train'):
     if generate_csv:
         with open('ROIs_v{}_{}.csv'.format(version, mode), 'w') as f:
@@ -210,7 +203,7 @@ args = parser.parse_args()
 
 # PATHS
 # wp = os.environ['LUNG_PATH']
-wp = '/home/enric/Desktop/TFM/DATA_LUNA/'
+wp = 'DATA_LUNA/'
 od = '/home/shared/'
 INPUT_PATH = wp + 'preprocessed'  # INPUT_PATH = wp + 'data/preprocessed5_sample'
 # VALIDATION_PATH = wp + 'preprocessed_validation_luna'
@@ -224,18 +217,34 @@ if not os.path.exists(LOGS_PATH):
     os.makedirs(LOGS_PATH)
 
 # OTHER INITIALIZATIONS: tensorboard, model checkpoint and logging, auc?
-tb = TensorBoard(log_dir=LOGS_PATH, histogram_freq=1, write_graph=False,
-                 write_images=False)  # replace keras.callbacks.TensorBoard
+tb = TensorBoard(
+    log_dir=LOGS_PATH, 
+    histogram_freq=1, 
+    write_graph=False,
+    write_images=False
+)  # replace keras.callbacks.TensorBoard
 model_checkpoint = ModelCheckpoint(OUTPUT_MODEL, monitor='val_loss', save_best_only=True)
 K.set_image_dim_ordering('th')
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s  %(levelname)-8s %(message)s',
-                    datefmt='%m-%d %H:%M:%S')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s  %(levelname)-8s %(message)s',
+    datefmt='%m-%d %H:%M:%S'
+)
 
 # CALL FUNCTIONS
 if args.train:
-    compute_ROIs(args.generate_csv, version=args.version, patientTxtPath=args.train, mode='train')
+    compute_ROIs(
+        args.generate_csv, 
+        version=args.version, 
+        patientTxtPath=args.train, 
+        mode='train'
+    )
 if args.test:
-    compute_ROIs(args.generate_csv, version=args.version, patientTxtPath=args.test, mode='test')
+    compute_ROIs(
+        args.generate_csv, 
+        version=args.version, 
+        patientTxtPath=args.test, 
+        mode='test'
+    )
 
 train(args.load_model, model=args.network, version=args.version)
