@@ -33,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--roi_statistics_csv', default = '', help=' (OPTIONAL) Annotate statistics')
     parser.add_argument('--threshold', type = float, default = -1, help=' (OPTIONAL) Discard patches with less than that.')
     parser.add_argument('--overwrite',  action='store_true', help=' (OPTIONAL) Overwrite Default none.')
-    parser.add_argument('--convertToFloat',  action='store_true', help=' (OPTIONAL) Transform the images to float. Dunno why, but some networks only work with one kind (Mingot ones with float, new ones with int16).')
+    parser.add_argument('--convertToFloat',  action='store_true', help=' (OPTIONAL) Transform the images to float. Dunno why, but some networks only work with one kind (old ones with float, new ones with int16).')
     parser.add_argument('--eval_all',  action='store_true', help='Evals all rois from dl4.')    
     args = parser.parse_args()
 
