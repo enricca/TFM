@@ -1,12 +1,9 @@
 # reading XMLs from LUNA and extracting the masks of the nodules
 
 import sys
-sys.path.append('Code/')
-
 import SimpleITK as sitk
 import readingXMLSegmentation
 import importlib
-reload(readingXMLSegmentation)
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
