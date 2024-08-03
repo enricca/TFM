@@ -1,7 +1,5 @@
 import sys
 import getpass
-# if getpass.getuser() == 'manuel':
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
 import os
 import random
 import logging
