@@ -6,8 +6,7 @@ Uses load_patient to generate patches over, and for each patch gets the probabil
 
 import sys
 import os
-#os.chdir('/home/pol/lung_cancer_isbi18/src/')
-sys.path.insert(0, '/home/pol/lung_cancer_isbi18/src/')
+sys.path.insert(0, 'lung_cancer_isbi18/src/')
 import logging
 import argparse
 import numpy as np
@@ -35,8 +34,6 @@ def transform_y(y):
     y = sigmoid(y)
     y = list(y)
     return y
-
-
 
 
 if __name__ == '__main__':
@@ -84,9 +81,6 @@ if __name__ == '__main__':
         model_dl8.compile(optimizer=Adam(lr=1e-4), loss='mse', metrics=['mse'])
         logging.info('Loading spiculation model %s...' % args.dl8)
         model.load_weights(args.dl8)
-
-
-
 
 
     #Create a dataframe for the ROIS
