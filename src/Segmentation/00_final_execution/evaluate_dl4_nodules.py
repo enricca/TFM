@@ -6,25 +6,19 @@ Uses load_patient to generate patches over, and for each patch gets the probabil
 
 import sys
 import os
-sys.path.append('/home/alex/lung_cancer_isbi18/src')
-
 import logging
 import argparse
 import numpy as np
 import pandas as pd
 import time,datetime
-
 from dl_model_patches import  common
-
 import keras
 from keras import backend as K
 from dl_networks.sample_resnet import ResnetBuilder
 from keras.optimizers import Adam
 
 # python evaluate_dl4_nodules.py -input_model /home/shared/models/malignancy_nodules_v1.hdf5 -input_data /media/shared/datasets/ISBI/preprocessed_main_nodule_mask -output_csv /home/shared/output/isbi_dl4_nodules_v1.csv -dataset isbi --overwrite
-
 # python evaluate_dl4_nodules.py -input_model /home/shared/models/malignancy_nodules_v1.hdf5 -input_data /media/shared/datasets/LUNA/preprocessed_extra_features -output_csv /home/shared/output/luna_dl4_nodules_v1.csv -dataset luna --overwrite
-
 # python evaluate_dl4_nodules.py -input_model /home/shared/models/malignancy_nodules_v3.hdf5 -input_data /media/shared/datasets/DSB/preprocessed_s1 -output_csv /home/shared/output/dsb_dl4_nodules_v3.csv -dataset dsb --overwrite
 
 def sigmoid(y):
