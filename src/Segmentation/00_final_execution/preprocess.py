@@ -5,8 +5,8 @@ File for preprocessing the datasets. It gets as input the DCOMS path, and conver
 Datasets accepted: ['dsb', 'lidc', 'luna']
 
 Example usage:
-python 00_preprocess.py --input=/Users/mingot/Projectes/kaggle/ds_bowl_lung/data/luna/subset0 --output=/Users/mingot/Projectes/kaggle/ds_bowl_lung/data/preproc_luna --pipeline=luna --nodules=/Users/mingot/Projectes/kaggle/ds_bowl_lung/data/luna/annotations.csv
-python 00_preprocess.py --input=/Users/mingot/Projectes/kaggle/ds_bowl_lung/data/sample_images --output=/Users/mingot/Projectes/kaggle/ds_bowl_lung/data/preproc_dsb --pipeline=dsb
+python 00_preprocess.py --input=ds_bowl_lung/data/luna/subset0 --output=ds_bowl_lung/data/preproc_luna --pipeline=luna --nodules=ds_bowl_lung/data/luna/annotations.csv
+python 00_preprocess.py --input=ds_bowl_lung/data/sample_images --output=ds_bowl_lung/data/preproc_dsb --pipeline=dsb
 
 python 00_preprocess.py --input=/home/shared/data/luna/images --output=/mnt/hd2/preprocessed5/ --pipeline=luna --nodules=/home/shared/data/luna/annotations.csv
 python 00_preprocess.py --input=/home/shared/data/stage1 --output=/mnt/hd2/preprocessed5/ --pipeline=dsb
@@ -29,13 +29,11 @@ from utils import preprocessing, reading, lung_segmentation
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s  %(levelname)-8s %(message)s',
-                    datefmt='%m-%d %H:%M:%S')
-
+                    datefmt='%m-%d %H:%M:%S'
+                   )
 
 # Define parametres
 COMMON_SPACING = [2, 0.7, 0.7]
-
-
 
 def process_filename(patient_file, output_folder, pipeline='dsb', df_nodules=None):
 
@@ -71,7 +69,6 @@ def process_filename(patient_file, output_folder, pipeline='dsb', df_nodules=Non
 
     # SET BACKGROUND: set to air parts that fell outside
     patient_pixels[patient_pixels < -1500] = -2000
-
 
     # RESAMPLING
     pix_resampled, new_spacing = preprocessing.resample(patient_pixels, spacing=originalSpacing, new_spacing=COMMON_SPACING)
@@ -119,7 +116,6 @@ def preprocess_files(file_list, output_folder, pipeline='dsb'):
     pool.close()
     pool.join()
     logging.info("Finished preprocessing in %.3f s" % (time()-tstart))
-
 
 
 if __name__ == '__main__':
