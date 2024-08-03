@@ -1,6 +1,5 @@
 import os
 import sys
-sys.path.append('/home/alex/lung_cancer_isbi18/src')
 import logging
 import argparse
 import numpy as np
@@ -14,8 +13,6 @@ sys.path.append('..')
 print os.getcwd()
 
 #from dl_model_patches import  common
-
-
 
 # ## if the OUTPUT_CSV file already exists, continue it
 # previous_filenames = set()
