@@ -1,22 +1,17 @@
 import sys
 import getpass
-# if getpass.getuser() == 'manuel':
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
 import os
 import random
 import logging
 import argparse
-
 import numpy as np
 import pandas as pd
 from dl_model_patches import  common
-
 from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint, Callback
 #from dl_networks.sample_resnet import ResnetBuilder
-
 from dl_utils.tb_callback import TensorBoard
 from dl_networks.sample_resnet import ResnetBuilder
 from sklearn.metrics import roc_auc_score
