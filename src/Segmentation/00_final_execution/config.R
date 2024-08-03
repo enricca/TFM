@@ -1,10 +1,10 @@
 
 # Base directory
-# BD <<- "/Users/mingot/Projectes/kaggle/ds_bowl_lung/personal/execute_model/"
+# BD <<- "ds_bowl_lung/personal/execute_model/"
 BD <<- "/home/shared/output/execution_test/"
 
 # training files
-path_repo <<- "/Users/mingot/Projectes/kaggle/ds_bowl_lung/"
+path_repo <<- "ds_bowl_lung/"
 ANNOTATIONS_FILE = paste0(path_repo,"data/stage1_labels.csv")  # JUST FOR TRAINING
 DL3_VALIDATION_FILE = paste0(path_repo, 'data/stage1_validation.csv')  # JUST FOR TRAINING
 
