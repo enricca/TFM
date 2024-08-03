@@ -15,8 +15,8 @@ import h5py
 from memory_profiler import profile
 import pandas
 
-X= np.load( '/homedtic/ecosp/patches/unet_v1_train_x.npz')['arr_0']        # patches from mask
-y = np.load('/homedtic/ecosp/patches/unet_v1_train_y.npz')['arr_0']        # mask de cada patch
+X= np.load( 'patches/unet_v1_train_x.npz')['arr_0']        # patches from mask
+y = np.load('patches/unet_v1_train_y.npz')['arr_0']        # mask de cada patch
 
 data = {'x_test': X[-300:],
         'y_test' : y[-300:],
@@ -26,7 +26,7 @@ data = {'x_test': X[-300:],
 ground_truth = data['y_test']
 ground_truth = ground_truth[ : , :, 32:64, 32:64 ]
 
-preds = np.load('/homedtic/ecosp/patches/prediction.npz')
+preds = np.load('patches/prediction.npz')
 
 i = 3
 preds[i, 0, :, :]
@@ -40,7 +40,6 @@ preds.shape
 aux = preds[43, 0, :, :]
 for i in range(30):
         aux = preds[i, 0, :, :]
-        #for j, x in enumerate(aux):
         if( aux.any() == 1 ):
                 print(i)
         elif( aux.all() == 0 ):
