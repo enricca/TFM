@@ -1,44 +1,28 @@
 # reading XMLs from LUNA and extracting the masks of the nodules
 
 import sys
-sys.path.append('/home/enric/Desktop/TFM/Code/')
-#sys.path.append('/home/enric/Downloads/pyradiomics/')
-
-#sys.path.append('/home/enric/Downloads/pyradiomics/radiomics/')
-#sys.path.append('/home/enric/Desktop/TFM/Code/pyradiomics/radiomics/')
-sys.path.append('/home/enric/anaconda2/envs/py27/lib/python2.7/site-packages/pyradiomics')
+sys.path.append('Code/')
 
 import SimpleITK as sitk
-#from importlib import reload
 import readingXMLSegmentation
 import importlib
-#importlib.reload(readingXMLSegmentation)
 reload(readingXMLSegmentation)
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import numpy as np
 import skimage, skimage.measure
-#%matplotlib inline
 import radiomics
-#from radiomics import featureextractor
-#help(radiomics)
 import numpy
-
-print(radiomics.__path__)
-print(numpy.__path__)
-print(sitk.__path__)
-
 
 fe = radiomics.featureextractor.RadiomicsFeaturesExtractor()
 
-csvPath = '/home/enric/Desktop/TFM/DATA_LUNA/CSVFILES/annotations.csv'
+csvPath = 'DATA_LUNA/CSVFILES/annotations.csv'
 nodules = pd.read_csv(csvPath)
-xmlPath = '/home/enric/Desktop/TFM/LIDC_xml/LIDC-XML_radiologist_anotations/tcia-lidc-xml/'
-imagePath = '/home/enric/Desktop/TFM/DATA_LUNA/all_subsets/'
+xmlPath = 'LIDC_xml/LIDC-XML_radiologist_anotations/tcia-lidc-xml/'
+imagePath = 'DATA_LUNA/all_subsets/'
 
 patients = set(nodules.seriesuid.values)
-print('#patients with nodules', len(patients) )
 
 #Get a scan, get its segmentations, and link it to malignancy.
 #Extract a numpy array with (image), and a csv with malignancy, spicatulation, etc, radiomics property, and identifier.
@@ -96,8 +80,6 @@ def extract_radiomic_features(patient_id, img, nodule_mask, spacing = [1,1,1], a
         print ('label %d, number of voxels = %d' % (i, np.sum(mask)))
 
         # change image format to SimpleITK (for pyradiomcis)
-        print(type(mask))
-        print(type(img))
         imgSitk = sitk.GetImageFromArray(img)
         imgSitk.SetSpacing(spacing)
         maskSitk = sitk.GetImageFromArray(mask)
@@ -124,7 +106,6 @@ def extract_radiomic_features(patient_id, img, nodule_mask, spacing = [1,1,1], a
 
 
 if len(rProps) != len(nodulesPatient):
-    #errors.append(pId)
     errors = []
     errors.append(pIdTest)
     #print('Error in patient', pId, 'number of anotated nodules %d / in csv %d ' % (len(rProps), len(nodulesPatient)) )
@@ -134,35 +115,16 @@ for r in rProps:
     for i,nod in nodulesPatient.iterrows():
         print(centroidDifferences(nod, centroidPatientCoordinatesrProps) )
 
-
-a = type(image)
-print('a = ', a)
-#print(  type(image) == a )
-
 imageNP = sitk.GetArrayViewFromImage(image)
-sys.path.append('/home/enric/Desktop/TFM/Code/pyradiomics/radiomics/')
-#from radiomics import featureextractor
-a = type(image)
-print('a = ', a)
-print('Mask ', type(mask))
+sys.path.append('Code/pyradiomics/radiomics/')
 mask2 = sitk.GetImageFromArray(mask)
-print('Mask2 ', type(mask2))
 # extract radiomics features
 fe = radiomics.featureextractor.RadiomicsFeaturesExtractor()
 fe.computeFeatures(image, mask2, 'sitk')
-
-
-mask.shape
 
 plt.figure(figsize = (20, 20))
 plt.imshow(imageNP[123, :, :], cmap = 'gray')
 #plt.scatter(130, 190, c = 'r')
 plt.contour(mask[123, :, :])
-
-
-
-
-
-
 
 
