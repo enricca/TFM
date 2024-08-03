@@ -6,16 +6,12 @@ Uses load_patient to generate patches over, and for each patch gets the probabil
 
 import sys
 import os
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
-
 import logging
 import argparse
 import numpy as np
 import pandas as pd
 import time,datetime
-
 from dl_model_patches import  common
-
 import keras
 from keras import backend as K
 from dl_networks.sample_resnet import ResnetBuilder
@@ -34,7 +30,7 @@ if __name__ == '__main__':
     parser.add_argument('--roi_statistics_csv', default = '', help=' (OPTIONAL) Annotate statistics')
     parser.add_argument('--threshold', type = float, default = -1, help=' (OPTIONAL) Discard patches with less than that.')
     parser.add_argument('--overwrite',  action='store_true', help=' (OPTIONAL) Overwrite Default none.')
-    parser.add_argument('--convertToFloat',  action='store_true', help=' (OPTIONAL) Transform the images to float. Dunno why, but some networks only work with one kind (Mingot ones with float, new ones with int16).')
+    parser.add_argument('--convertToFloat',  action='store_true', help=' (OPTIONAL) Transform the images to float. Dunno why, but some networks only work with one kind (old ones with float, new ones with int16).')
     args = parser.parse_args()
 
     #Load the network
