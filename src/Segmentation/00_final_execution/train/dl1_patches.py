@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
+sys.path.append('lung_cancer_isbi18/src')
 import os
 import random
 import logging
