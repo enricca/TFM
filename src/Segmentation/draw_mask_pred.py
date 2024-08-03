@@ -17,14 +17,6 @@ import pandas
 
 X= np.load( '/homedtic/ecosp/patches/unet_v1_train_x.npz')['arr_0']        # patches from mask
 y = np.load('/homedtic/ecosp/patches/unet_v1_train_y.npz')['arr_0']        # mask de cada patch
-#X= np.load( '/home/enric/Desktop/TFM/DATA_LUNA/patches/unet_v1_train_x.npz')['arr_0']        # patches from mask
-#y = np.load('/home/enric/Desktop/TFM/DATA_LUNA/patches/unet_v1_train_y.npz')['arr_0']        # mask de cada patch
-
-
-"""data = {'x_test': X[-300:],
-        'y_test' : y[-300:],
-        'x_train': X[-400:-300],
-        'y_train' : y[-400:-300]}"""
 
 data = {'x_test': X[-300:],
         'y_test' : y[-300:],
@@ -34,11 +26,7 @@ data = {'x_test': X[-300:],
 ground_truth = data['y_test']
 ground_truth = ground_truth[ : , :, 32:64, 32:64 ]
 
-
 preds = np.load('/homedtic/ecosp/patches/prediction.npz')
-# preds = np.load('/home/enric/Desktop/TFM/prediction.npz')['arr_0']
-
-
 
 i = 3
 preds[i, 0, :, :]
@@ -47,7 +35,6 @@ plt.figure(figsize = (10, 10))
 plt.imshow(X[i, 1, :, :], cmap = 'gray')
 plt.contour(preds[i, 0, :, :] > 0.5, colors = 'yellow')
 plt.contour(ground_truth[i, 0, :, :] , colors = 'red')
-
 
 preds.shape
 aux = preds[43, 0, :, :]
@@ -58,13 +45,3 @@ for i in range(30):
                 print(i)
         elif( aux.all() == 0 ):
                 print(i, '= 0')
-
-
-
-
-
-
-
-
-
-
