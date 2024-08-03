@@ -11,9 +11,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import time,datetime
-
 from dl_model_patches import  common
-
 import keras
 from keras import backend as K
 from dl_networks.sample_resnet import ResnetBuilder
