@@ -1,7 +1,7 @@
 import sys
 import getpass
 if getpass.getuser() == 'enric':
-    sys.path.append('../home/enric/Desktop/TFM/lung_cancer_isbi18/src')
+    sys.path.append('../home/enric/TFM/lung_cancer_isbi18/src')
 import os
 import random
 import logging
@@ -201,9 +201,9 @@ args = parser.parse_args()
 # PATHS
 # wp = os.environ['LUNG_PATH']
 ##wp = '/media/shared/datasets/LUNA/'
-wp = '/home/enric/Desktop/TFM/DATA_LUNA/'
+wp = '/home/enric/TFM/DATA_LUNA/'
 ##od = '/home/shared/'
-od = '/home/enric/Desktop/TFM/'
+od = '/home/enric/TFM/'
 ##INPUT_PATH = wp + 'preprocessed'  # INPUT_PATH = wp + 'data/preprocessed5_sample'
 INPUT_PATH = wp + 'preprocessed'
 # VALIDATION_PATH = wp + 'preprocessed_validation_luna'
