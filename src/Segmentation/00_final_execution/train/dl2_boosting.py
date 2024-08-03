@@ -7,7 +7,6 @@ import argparse
 
 import numpy as np
 import pandas as pd
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
 from dl_model_patches import  common
 
 from keras import backend as K
