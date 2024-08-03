@@ -6,16 +6,12 @@ Uses load_patient to generate patches over, and for each patch gets the probabil
 
 import sys
 import os
-sys.path.append('/home/manuel/lung_cancer_isbi18/src')
-
 import logging
 import argparse
 import numpy as np
 import pandas as pd
 import time,datetime
-
 from dl_model_patches import  common
-
 import keras
 from keras import backend as K
 from dl_networks.sample_resnet import ResnetBuilder
