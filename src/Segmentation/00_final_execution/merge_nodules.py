@@ -1,5 +1,4 @@
 """
-Author: GBernardino
 Scans the nodule candidates, applies a threshold, searches for nodules that are likely to be the same (but in different slices) and joins them. The result  is written in another csv.
 Usage from cli:
     python mergeNodules.py inputCSV outputCSV (debug=[True/False])
@@ -9,7 +8,7 @@ Implementation considerations (quick and dirty):
 - Only considers the things that are likely to be a nodule (ie, applying threshold). A better approach would include information in between, if it's relatively high.
 - I have considered that the nodule continuations are more or less concentric, and that there can be a gap in the middle slices where no nodule is detected
 - I haven't check if a nodule could be appended to more than one nodule (there is a check in search_in_open_nodules that can be enabled).
-- Not optimized, but should run relatively fast (90s in a Macbook Pro for the whole dataset)
+- Not optimized, but should run relatively fast
 
 Output writes a  csv with:
 -
